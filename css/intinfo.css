@@ -1,0 +1,41 @@
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  overflow: auto;
+  background-color: #f2f2f2;
+  -webkit-overflow-scrolling: touch;
+}
+* {
+  touch-action: none;
+}
+.backbtn {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  z-index: 99;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+}
+.backbtn i {
+  flex: 1;
+}
+.list li {
+  padding: 0.54054054rem;
+  background: white;
+  margin-bottom: 10px;
+}
+.list li p {
+  font-size: 0.37837838rem;
+  line-height: 1.8em;
+}

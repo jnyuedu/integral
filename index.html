@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>积分商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/minireset.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_649758_nz1kuncn76z85mi.css">
+    <link rel="stylesheet" href="./css/index.css?djdjf">
+    
+</head>
+<body>
+    <div class="scroll">
+        <div class="header">
+            <img src="./img/headerbg.jpg" alt="">
+            <div class="userinfo">
+                <img src="./img/h.jpg" alt="">
+                <p>用户的昵称</p>
+                <span>999 积分</span>
+            </div>
+        </div>
+        <div class="news">
+            <i class="iconfont icon-yinliang"></i>
+            <span> 消息通知:</span>
+            <span>恭喜来自上海的李先生成功使用99积分兑换了一辆兰博基尼汽车并..</span>
+        </div>
+        <div class="goods-list">
+            <ul>
+                <!-- <li>
+                    <div>
+                        <a href="./detail.html">
+                            <img src="./img/goods.jpg" alt="">
+                            <p class="title">听什么歌都像在唱自己 网易云评论书音乐评笔记丁磊陈鸿宇推荐音乐曲书籍畅销图书排行榜..</p>
+                            <div class="btn">
+                                <p>
+                                    <span>99</span> 积分</p>
+                                <button>立即兑换</button>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="./detail.html">
+                            <img src="./img/goods.jpg" alt="">
+                            <p class="title">听什么歌都像在唱自己 网易云评论书音乐评笔记丁磊陈鸿宇推荐音乐曲书籍畅销图书排行榜..</p>
+                            <div class="btn">
+                                <p>
+                                    <span>99</span> 积分</p>
+                                <button>立即兑换</button>
+                            </div>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="./detail.html">
+                            <img src="./img/goods.jpg" alt="">
+                            <p class="title">听什么歌都像在唱自己 网易云评论书音乐评笔记丁磊陈鸿宇推荐音乐曲书籍畅销图书排行榜..</p>
+                            <div class="btn">
+                                <p>
+                                    <span>99</span> 积分</p>
+                                <button>立即兑换</button>
+                            </div>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="./detail.html">
+                            <img src="./img/goods.jpg" alt="">
+                            <p class="title">听什么歌都像在唱自己 网易云评论书音乐评笔记丁磊陈鸿宇推荐音乐曲书籍畅销图书排行榜..</p>
+                            <div class="btn">
+                                <p>
+                                    <span>99</span> 积分</p>
+                                <button>立即兑换</button>
+                            </div>
+                        </a>
+                    </div>
+                </li> -->
+            </ul>
+        </div>
+        <div class="fill-height"></div>
+    </div>
+    
+    <div class="navbar">
+        <div class="item active">
+            <a href="index.html">
+                <i class="iconfont icon-jifen"></i>
+                <span>积分商城</span>
+            </a>
+        </div>
+        <!-- <div class="item">
+            <a href="index.html">
+                <i class="iconfont icon-wuliu"></i>
+                <span>物流信息</span>
+            </a>
+        </div> -->
+        <div class="item">
+            <a href="orders.html">
+                <i class="iconfont icon-dingdan"></i>
+                <span>订单信息</span>
+            </a>
+        </div>
+        <div class="item">
+            <a href="personal.html">
+                <i class="iconfont icon-gerenzhongxin"></i>
+                <span>个人中心</span>
+            </a>
+        </div>
+    </div>
+    <div class="mask">
+        <div class="content">
+            <i class="iconfont icon-msnui-error"></i>
+            <p>抱歉，您的积分不足，不足以兑换本物品</p>
+            <p>您可以赚取更多积分后再来兑换本物品</p>
+            <button>确定</button>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="./js/mock.js"></script>
+    <script src="./js/common.js"></script>
+    <script>
+        var userInt = 0;
+        var index = localStorage.getItem("index")||0;
+        var btns = document.querySelectorAll(".navbar .item");
+        var userinfo = document.querySelector(".userinfo");
+        var list = document.querySelector(".goods-list ul");
+
+        btns.forEach(function (el,i) {
+            el.className = "item";
+            el.onmousedown = function() {
+                localStorage.setItem("index",i);
+            }
+        })
+        btns[index].className = "item active";
+        // overscroll(document.querySelector('.scroll'));
+        Mock.mock('http://localhost/q', {
+            'nickname': '@cname',
+            'number|1-1000':2,
+            'headerurl': Random.dataImage('200x200', 'Hello Mock.js!')
+        });
+        Mock.mock('http://localhost/l', {
+            'list|4-8':[{
+                'id|+1': 2,
+                'goodsname': Random.paragraph(),
+                'int|1-1000': 2,
+                'goodsimg': Random.dataImage('200x200', 'Hello Mock.js!')
+            }]
+        });
+        $.ajax({
+            url: 'http://localhost/q',
+            dataType: 'json'
+        }).done(function (data, status, jqXHR) {
+            userInt = data.number;
+            userinfo.querySelector("img").src = data.headerurl;
+            userinfo.querySelector("p").innerHTML = data.nickname;
+            userinfo.querySelector("span").innerHTML = data.number+" 积分";
+        })
+        $.ajax({
+            url: 'http://localhost/l',
+            dataType: 'json'
+        }).done(function (data, status, jqXHR) {
+            var info  = data.list;
+            var newArr = [];
+            for (let i = 0; i < info.length; i+=2) {
+                newArr.push([info[i],(info[i+1]?info[i+1]:null)]);
+            }
+            console.log(newArr,data.list);
+            newArr.forEach(function (el,i) {
+                var li = document.createElement("li");
+                el.forEach(function (el,i) {
+                    console.log(el)
+                    if(el){
+                        var div = document.createElement("div");
+                        div.innerHTML = `<a href="./detail.html?id=${el.id}" data-int="${el.int}">
+                            <img src="${el.goodsimg}" alt="">
+                            <p class="title">${el.goodsname}</p>
+                            <div class="btn">
+                                <p>
+                                    <span>${el.int}</span> 积分</p>
+                                <button class="${el.int > userInt ? "false" : "true"}">${el.int>userInt?"积分不足":"立即兑换"}</button>
+                            </div>
+                        </a>`;
+                        li.appendChild(div);
+                    }
+                })
+                list.appendChild(li);
+            });
+        })
+    </script>
+</body>
+</html>

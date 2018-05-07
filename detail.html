@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/minireset.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_649758_nz1kuncn76z85mi.css">
+    <link rel="stylesheet" href="./css/detail.css">
+    <link rel="stylesheet" href="./css/swiper-4.2.2.min.css">
+</head>
+
+<body>
+    <div class="swiper-container">
+        <!-- <div class="swiper-wrapper"> -->
+            <!-- <div class="swiper-slide">
+                <img src="./img/banner1.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="./img/banner2.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="./img/banner1.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="./img/banner2.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="./img/banner1.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="./img/banner2.jpg" alt="">
+            </div> -->
+        <!-- </div> -->
+        <!-- <div class="swiper-pagination"></div> -->
+    </div>
+    <div class="backbtn"><i class="iconfont icon-back"></i></div>
+    <div class="goods-info">
+        <h2>天猫精灵 M1曲奇智能音箱 语音助手AI网络蓝牙WiFi音响天猫精灵 M1曲奇智能音箱 语音助手AI网络蓝牙WiFi音响天猫精灵 M1曲奇智能音箱 语音助手AI网络蓝牙WiFi音响</h2>
+        <p class="int"><span>9999</span>积分</p>
+        <p class="address"><span>快递：包邮</span><span>山东济宁</span></p>
+    </div>
+    <div class="goods-detail">
+        <img src="./img/i1.jpg">
+        <img src="./img/i2.jpg">
+    </div>
+    <div class="fill-height"></div>
+    <div class="bottom">
+        <div>
+            <span><i class="iconfont icon-dingdan"></i><span>商城</span></span>
+            <span><i class="iconfont icon-dingdan"></i><span>客服</span></span>
+            <span><i class="iconfont icon-dingdan"></i><span>售后</span></span>
+        </div>
+        <div>立即兑换商品</div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/swiper-4.2.2.min.js"></script>
+    <script src="https://cdn.bootcss.com/require.js/2.3.5/require.min.js"></script>
+    <script>
+        
+        var backBtn = document.querySelector(".backbtn");
+        var toolsBtn = document.querySelectorAll(".bottom div span");
+        toolsBtn[0].ontouchstart = backBtn.ontouchstart = function () {
+            console.log(window.location);
+            window.history.back();  
+        }
+
+        var swiperContainer = document.querySelector(".swiper-container");
+        var goodsInfo = document.querySelector(".goods-info");
+        var goodsDetail = document.querySelector(".goods-detail");
+        require.config({
+            paths: {
+                mock: 'http://mockjs.com/dist/mock'
+            }
+        })
+        console.log(swiperContainer);
+        var url = "http://localhost/l";
+
+        // 加载 Mock
+        require(['mock'], function (Mock) {
+            // 使用 Mock
+            var Random = Mock.Random;
+            Mock.mock(url, {
+                'info|1': [{
+                    'id|+1': 1,
+                    'goodsname': Random.csentence(30, 60),
+                    'int|1-1000': 2,
+                    'goodsimgs|3-7': [Random.dataImage('200x200', 'Hello Mock.js!')],
+                    'info|3-7':[Random.dataImage('200x200', 'Hello Mock.js!')]
+                }]
+            })
+            // 输出结果
+            
+            $.ajax({
+                url: url,
+                dataType: 'json'
+            }).done(function (data, status, jqXHR) {
+                
+                var info = data.info;
+                var wrapper = document.createElement("div");
+                wrapper.className = "swiper-wrapper";
+                var pagination = document.createElement("div");
+                pagination.className = "swiper-pagination";
+                info.goodsimgs.forEach(function (el,i) {
+                    var slide = document.createElement("div");
+                    slide.className = "swiper-slide";
+                    slide.innerHTML = `<img src="${el}" alt="">`;
+                    wrapper.appendChild(slide);
+                });
+                swiperContainer.appendChild(wrapper);
+                swiperContainer.appendChild(pagination);
+                var swiper = new Swiper('.swiper-container', {
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                });
+                goodsInfo.querySelector("h2").innerHTML = info.goodsname;
+                goodsInfo.querySelector(".int span").innerHTML = info.int;
+                info.info.forEach(function (el,i) {
+                    goodsDetail.innerHTML+=`<img src="${el}"/>`;
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

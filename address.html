@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/minireset.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_649758_nz1kuncn76z85mi.css">
+    <link rel="stylesheet" href="./css/address.css">
+</head>
+<body>
+    <div class="header">
+        <img src="./img/headerbg.jpg" alt="">
+        <div class="userinfo">
+            <img src="./img/h.jpg" alt="">
+            <p>用户的昵称</p>
+            <span>999 积分</span>
+        </div>
+    </div>
+    <div class="backbtn">
+        <i class="iconfont icon-back"></i>
+    </div>
+    <ul class="list">
+        <li><label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label><input type="text"></li>
+        <li><label>联系方式</label><input type="text"></li>
+        <li><label>详细地址</label><input type="text"></li>
+        <li><input type="button" value="提交信息"></li>
+    </ul>
+    <script src="./js/common.js"></script>
+    <script>
+        var backBtn = document.querySelector(".backbtn");
+        backBtn.ontouchstart = function () {
+            console.log(window.location);
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

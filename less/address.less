@@ -1,0 +1,47 @@
+@import "./base.less";
+@import "./common.less";
+
+.backbtn{
+    position: fixed;
+    left: 10px;
+    top:10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    z-index: 99;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    color: #fff;
+    background: rgba(0, 0, 0, .6);
+    i{
+        flex: 1;
+    }
+}
+.list{
+    background: white;
+    .px2rem(padding,40);
+    li{
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        label{
+            .px2rem(width,140);
+            .px2rem(font-size,28);
+            text-align: justify;
+        }
+        input{
+            flex:1;
+            .px2rem(height,80);
+            -webkit-appearance: none;
+            border: 1px solid gray;
+            border-radius: 0;
+        }
+        &:last-of-type input{
+            background: #f44336;
+            color: white;
+            border: none;
+        }
+    }
+}

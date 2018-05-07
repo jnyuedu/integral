@@ -1,0 +1,27 @@
+@import "./base.less";
+@import "./common.less";
+
+.list{
+    .px2rem(margin-top,20);
+    li{
+        background: #fff;
+        border-bottom: 1px solid #f1f1f1;
+        color: #555;
+        .px2rem(font-size,28);
+        .px2rem(height,86);
+        .px2rem(line-height,86);
+        a,a:visited{
+            color: #555;
+            text-decoration: none;
+        }
+        i{
+            display: inline-block;
+            .px2rem(margin-right,34);
+            .px2rem(margin-left,44);
+            vertical-align: middle;
+        }
+        &:last-of-child{
+            border: none;
+        }
+    }
+}

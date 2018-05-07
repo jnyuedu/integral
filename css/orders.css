@@ -1,0 +1,129 @@
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  overflow: auto;
+  background-color: #f2f2f2;
+  -webkit-overflow-scrolling: touch;
+}
+* {
+  touch-action: none;
+}
+.header {
+  text-align: center;
+  overflow: hidden;
+  height: 4.59459459rem;
+}
+.header img {
+  width: 100%;
+}
+.header .userinfo {
+  font-size: 0;
+  margin-top: -4.72972973rem;
+  color: #fff;
+}
+.header .userinfo p {
+  font-size: 0.36486486rem;
+  margin-bottom: 4px;
+}
+.header .userinfo span {
+  font-size: 0.33783784rem;
+}
+.header .userinfo img {
+  width: 1.75675676rem;
+  height: 1.75675676rem;
+  margin-top: 0.40540541rem;
+  margin-bottom: 0.24324324rem;
+  border-radius: 50%;
+}
+.navbar {
+  border-top: 1px solid #f2f2f2;
+  height: 1.37837838rem;
+  display: flex;
+  background-color: white;
+  position: fixed;
+  z-index: 9;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  justify-content: space-around;
+}
+.navbar .item {
+  flex: 1;
+  text-align: center;
+  color: #515151;
+}
+.navbar .item a,
+.navbar .item a:visited {
+  display: block;
+  height: 100%;
+  color: #515151;
+}
+.navbar .item.active,
+.navbar .item.active a:visited {
+  color: #d9261f;
+}
+.navbar .item a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.navbar .item i {
+  margin-top: 4px;
+  font-size: 0.64864865rem;
+}
+.navbar .item span {
+  font-size: 0.25675676rem;
+}
+.fill-height {
+  height: 1.37837838rem;
+}
+.list li {
+  background: white;
+  margin-bottom: 0.17567568rem;
+  padding: 0.18918919rem;
+  display: flex;
+}
+.list li img {
+  width: 2.7027027rem;
+  height: 2.7027027rem;
+  margin-right: 0.35135135rem;
+}
+.list li div {
+  font-size: 0.40540541rem;
+}
+.list li div h2 {
+  color: #555;
+  display: -webkit-box !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.list li div .int {
+  font-size: 0.37837838rem;
+  color: #fe0b04;
+  margin: 4px 0;
+}
+.list li div p {
+  margin: 2px 0;
+  margin-bottom: 2.5px;
+  color: #b4b4b4;
+  font-size: 0.27027027rem;
+}
+.list li div p .red {
+  color: #fe0b04;
+}
+.list li div p .green {
+  color: #09ab01;
+}
+.list li div p .gray {
+  color: #bdbdbd;
+}
+.list li div p .yellow {
+  color: #918f04;
+}

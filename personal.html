@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/minireset.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_649758_nz1kuncn76z85mi.css">
+    <link rel="stylesheet" href="./css/personal.css?sdkjk">
+</head>
+<body>
+    <div class="scroll">
+        <div class="header">
+            <img src="./img/headerbg.jpg" alt="">
+            <div class="userinfo">
+                <img src="./img/h.jpg" alt="">
+                <p>用户的昵称</p>
+                <span>999 积分</span>
+            </div>
+        </div>
+        <ul class="list">
+            <li>
+                <a href="intinfo.html">
+                    <i class="iconfont icon-zichanmingxi"></i>
+                    积分明细
+                </a>
+            </li>
+            <li>
+                <a href="orders.html" class="orders">
+                    <i class="iconfont icon-list-1-copy"></i>
+                    购物记录
+                </a>
+            </li>
+        </ul>
+        <ul class="list">
+            <li>
+                <a href="address.html">
+                    <i class="iconfont icon-dizhi"></i>
+                    收货地址
+                </a>
+            </li>
+        </ul>
+        <div class="fill-height"></div>
+    </div>
+    <div class="navbar">
+        <div class="item active">
+            <a href="index.html">
+                <i class="iconfont icon-jifen"></i>
+                <span>积分商城</span>
+            </a>
+        </div>
+        <!-- <div class="item">
+            <a href="index.html">
+                <i class="iconfont icon-wuliu"></i>
+                <span>物流信息</span>
+            </a>
+        </div> -->
+        <div class="item">
+            <a href="orders.html">
+                <i class="iconfont icon-dingdan"></i>
+                <span>订单信息</span>
+            </a>
+        </div>
+        <div class="item">
+            <a href="personal.html">
+                <i class="iconfont icon-gerenzhongxin"></i>
+                <span>个人中心</span>
+            </a>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="./js/mock.js"></script>
+    <script src="./js/common.js"></script>
+    <script>
+        var index = localStorage.getItem("index") || 2;
+        console.log(index);
+        var btns = document.querySelectorAll(".navbar .item");
+        btns.forEach(function (el, i) {
+            el.className = "item";
+            el.onmousedown = function () {
+                localStorage.setItem("index", i);
+            }
+        })
+        var ordersBtn = document.querySelector(".orders");
+        ordersBtn.addEventListener("touchstart",function () {
+            localStorage.setItem("index", 1);
+        })
+        btns[index].className = "item active";
+        // overscroll(document.querySelector('.scroll'));
+        var userinfo = document.querySelector(".userinfo");
+        Mock.mock('http://localhost/q', {
+            'nickname': '@cname',
+            'number|1-1000': 2,
+            'headerurl': Random.dataImage('200x200', 'Hello Mock.js!')
+        });
+        $.ajax({
+            url: 'http://localhost/q',
+            dataType: 'json'
+        }).done(function (data, status, jqXHR) {
+            userinfo.querySelector("img").src = data.headerurl;
+            userinfo.querySelector("p").innerHTML = data.nickname;
+            userinfo.querySelector("span").innerHTML = data.number + " 积分";
+        })
+    </script>
+</body>
+</html>

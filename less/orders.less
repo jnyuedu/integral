@@ -1,0 +1,55 @@
+@import "./base.less";
+@import "./common.less";
+
+.list{
+    li{
+        background: white;
+        // .px2rem(height,190);
+        .px2rem(margin-bottom,13);
+        .px2rem(padding,14);
+        display: flex;
+        img{
+            .px2rem(width,200); // 160
+            .px2rem(height,200);
+            .px2rem(margin-right,26);
+        }
+        div{
+            .px2rem(font-size,30); // 19
+            h2{
+                color:#555;
+                display: -webkit-box !important;
+                overflow: hidden;
+                
+                text-overflow: ellipsis;
+                word-break: break-all;
+                
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+            }
+            .int{
+                .px2rem(font-size,28);
+                color: #fe0b04;
+                margin: 4px 0;
+            }
+            p{
+                margin: 2px 0;
+                margin-bottom: 2.5px;
+                // .px2rem(line-height,35); //15
+                color: #b4b4b4;
+                .px2rem(font-size,20); //15
+                .red{
+                    color: #fe0b04;
+                }
+                .green{
+                    color:#09ab01;
+                }
+                .gray{
+                    color:#bdbdbd;
+                }
+                .yellow{
+                    color:#918f04;
+                }
+            }
+        }
+    }
+}
